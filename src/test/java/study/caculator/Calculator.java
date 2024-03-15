@@ -1,4 +1,4 @@
-package study;
+package study.caculator;
 
 import java.util.Scanner;
 
