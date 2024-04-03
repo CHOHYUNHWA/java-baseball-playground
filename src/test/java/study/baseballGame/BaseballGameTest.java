@@ -13,26 +13,29 @@ public class BaseballGameTest {
 
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         String answer = "243";
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"123","456","789"})
+    @ValueSource(strings = {"123", "456", "254"})
+//    @Test
     @DisplayName("ball Test")
-    void ballTest(){
+    void ballTest(String strings) {
         String answer = "243";
+        int result = baseballGame.checkBall(strings, answer);
+        Assertions.assertThat(1).isEqualTo(result);
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"123","456","789"})
+    @ValueSource(strings = {"123", "456", "789"})
     @DisplayName("strike Test")
-    void StrikeTest(){
+    void StrikeTest() {
     }
 
     @Test
     @DisplayName("생성된 정답 길이 검증")
-    void generateAnswerLengthTest(){
+    void generateAnswerLengthTest() {
         for (int i = 0; i < 100; i++) {
             Assertions.assertThat(baseballGame.makeAnswer().length()).isEqualTo(3);
         }
@@ -40,18 +43,22 @@ public class BaseballGameTest {
 
     @Test
     @DisplayName("생성된 정답 중복 요소 존재 검증")
-    void generateAnswerDuplicateTest(){
+    void generateAnswerDuplicateTest() {
         for (int i = 0; i < 100; i++) {
             String answer = baseballGame.makeAnswer();
 
             char digit1 = answer.charAt(0);
             char digit2 = answer.charAt(1);
             char digit3 = answer.charAt(2);
-
             Assertions.assertThat(digit1).isNotEqualTo(digit2);
             Assertions.assertThat(digit2).isNotEqualTo(digit3);
             Assertions.assertThat(digit3).isNotEqualTo(digit1);
-
         }
     }
+
+//    @Test
+//    @DisplayName("정답 생성 오류 테스트")
+//    void makeAnswerTest(String strings) {
+//        Assertions.assertThat(baseballGame.makeAnswer())
+//    }
 }
